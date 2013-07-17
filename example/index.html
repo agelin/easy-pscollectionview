@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>pscollection</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../pscollection.js"></script>
+  </head>
+  <body>
+    <div style="width:100%;" id="id_example_pscollection"></div>
+    <script language="javascript">
+      var cols = 4;
+      var cellWidth = 200;
+      
+
+
+      var pscollection = new PSCollection(4,200);
+
+
+
+
+      var exampleData = [{imageUrl:"images/1.jpg",w:220,h:294,text:"hello world hello world hello world hello world hello world"},
+			 {imageUrl:"images/2.jpg",w:220,h:143,text:"hello world hello world hello world hello world hello world hello world hello world "},
+			 {imageUrl:"images/3.jpg",w:220,h:373,text:"hello world hello world hello world rld hello world hello world "},
+			 {imageUrl:"images/4.jpg",w:220,h:231,text:"hello world hello world hello world hello world hello world hello hello world "},
+			 {imageUrl:"images/5.jpg",w:220,h:220,text:"hello world hello world hello world hello world hello world hello world hello world "},
+			 {imageUrl:"images/6.jpg",w:220,h:142,text:"hello world rld hello world hello world "},
+			 {imageUrl:"images/7.jpg",w:220,h:271,text:"hello world hello world hello world hello world hello world hello world hello world "},
+			 {imageUrl:"images/8.jpg",w:220,h:293,text:"hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world "},
+			 {imageUrl:"images/9.jpg",w:220,h:294,text:" hello world hello world hello world "},
+			 {imageUrl:"images/10.jpg",w:220,h:165,text:"hello world hello world hello world hello world hello world ello world "}];
+
+
+
+
+
+
+
+
+
+      function showCells(cells){
+	  for(var i=0;i<cells.length;i++){
+	      var cell = cells[i];
+	      var v = $("<div />");
+	      v.width(cellWidth);
+	      var imgv = $("<div />");
+	      imgv.width(cellWidth);
+	      imgv.css("text-align","center");
+	      var img = $("<img src=\"" + cell["imageUrl"] + "\" />").width(cellWidth - 4);
+	      var w = cell["w"];
+	      var h = cell["h"];
+	      h = parseInt(cellWidth * 1.0 / w * h,10);
+	      img.height(h);
+	      imgv.append(img);
+	      v.append(imgv);
+	      var textv = $("<div />");
+	      textv.css("text-align","left");
+	      textv.css("padding",4);
+	      textv.css("margin-bottom", 10);
+	      textv.text(cell.text);
+	      v.append(textv);
+	      pscollection.appendCell(v);
+	  }
+      }
+
+
+      function load(){
+
+	  showCells(exampleData);
+	  showCells(exampleData);
+	  
+      }
+      
+      $(document.body).ready(function(){
+	  pscollection.show($("#id_example_pscollection"));
+	  load();
+      });
+    </script>
+<div>
+    <button type="button" onclick="load();">load more</button>
+</div>
+  </body>
+</html>
